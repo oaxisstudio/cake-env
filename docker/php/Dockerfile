@@ -36,6 +36,9 @@ RUN mkdir -p \
   && chmod -R 770 \
     tmp
 
+# ServerName Rewrite
+RUN echo ServerName $HOSTNAME > /etc/apache2/conf-available/fqdn.conf && a2enconf fqdn
+
 # Enable Apache modules and restart
 RUN a2enmod rewrite \
   && service apache2 restart

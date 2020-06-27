@@ -14,15 +14,14 @@ https://hub.docker.com/editions/community/docker-ce-desktop-mac
 
 ### 3. Cake2.xのクローン
 
-`Cake-env` ディレクトリ直下で  
+`cake-env` ディレクトリ直下で  
 `git clone -b 2.x https://github.com/cakephp/cakephp.git`
 
 ## とりあえず動かしてみる
 
-1. `Cake-php`ディレクトリで `docker-compose build`
+1. `cake-env`ディレクトリで `docker-compose build`
 2. `docker-compose up`
 3. `localhost:8080` にアクセス：CakePHPのトップ画面が表示（まだエラーメッセージが多々出るはず）
-4. `localhost:3000` にアクセス：phpmyadminのトップ画面が表示
 
 ## 必要なファイルの作成・書き換え（CakePHPの初期設定）
 
@@ -53,9 +52,12 @@ https://hub.docker.com/editions/community/docker-ce-desktop-mac
 
 3. (任意)DebbugKitのインストール
 
+4. `cake-env` というディレクトリの名前は好きなものに変えても問題ありません。
+
 ### エラー解消を確認
 
-`localhost:8080`にアクセス
+1. `localhost:8080`にアクセス 赤いエラーメッセージはなくなりましたか？
+2. `localhost:3000` にアクセス：phpmyadminのトップ画面が表示されますか？
 
 ## フォルダ構成
 
