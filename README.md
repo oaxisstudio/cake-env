@@ -88,17 +88,16 @@ https://hub.docker.com/editions/community/docker-ce-desktop-mac
 ## 開発時の手順
 
 1. 開発環境の起動  
-  `docker-comppose up`
+  `docker-compose up`
 
 2. 開発終了  
-  `docker-compose down`
+  コンテナ停止 `docker-compose stop`  
+  コンテナ削除 `docker-compose down`
 
 3. サーバー設定やDockerfileを書き換えたときは再ビルドが必要です  
   `docker-compose build`
 
 ## 参考URL
 
-- Dockerfileの設定内容
+- Dockerfileの設定内容・CakePHP初期設定  
    https://github.com/onoya/dockerized-cakephp-app
-- CakePHP初期設定
-  
