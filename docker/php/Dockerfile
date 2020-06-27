@@ -1,15 +1,43 @@
 FROM php:5.6-apache
 
-RUN apt-get update \
-    && apt-get -y install vim wget lsb-release libicu-dev mysql-client \
-    && docker-php-ext-install pdo pdo_mysql mysqli intl
-# RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
-RUN ln -s /etc/apache2/mods-available/vhost_alias.load /etc/apache2/mods-enabled
-# RUN echo ServerName $HOSTNAME > /etc/apache2/conf-available/fqdn.conf && a2enconf fqdn
-# RUN a2enmod headers
-# RUN a2enmod include
+# Install the required packages and remove the apt cache.
+RUN apt-get update -yqq \
+  && apt-get install -yqq --no-install-recommends \
+    git \
+    zip \
+    unzip \
+  && rm -rf /var/lib/apt/lists
 
-COPY ./base.conf /etc/apache2/sites-available/base.conf
-RUN a2ensite base.conf
+# Enable PHP extensions
+RUN docker-php-ext-install pdo_mysql mysqli
 
-COPY ./php.ini /usr/local/etc/php/
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
+
+# Add cake command to system path
+ENV PATH="${PATH}:/var/www/html/lib/Cake/Console"
+ENV PATH="${PATH}:/var/www/html/app/Vendor/bin"
+
+# COPY site conf file
+COPY ./base.conf /etc/apache2/sites-available/000-default.conf
+
+# Copy the code into /var/www/html/ inside the image
+COPY . .
+
+# Set default working directory
+WORKDIR ./app
+
+# Create tmp directory and make it writable by the web server
+RUN mkdir -p \
+    tmp/cache/models \
+    tmp/cache/persistent \
+  && chown -R :www-data \
+    tmp \
+  && chmod -R 770 \
+    tmp
+
+# Enable Apache modules and restart
+RUN a2enmod rewrite \
+  && service apache2 restart
+
+EXPOSE 80

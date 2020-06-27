@@ -30,7 +30,6 @@ services:
       - '8080:80'
     volumes: 
       - ./cakephp:/var/www/html
-      - ./docker/php/apache2.conf:/etc/apache2/apache2.conf
       - ./docker/php/php.ini:/usr/local/etc/php/php.ini
     links:
       - db
