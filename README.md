@@ -26,7 +26,7 @@ https://hub.docker.com/editions/community/docker-ce-desktop-mac
 ## 必要なファイルの作成・書き換え（CakePHPの初期設定）
 
 1. `cakephp/app/Config/database.php` の作成  
-  `cakephp/app/Config/database.php default`をコピーしてファイル名からdefauleを削除。ファイルを以下のように編集  
+  `cakephp/app/Config/database.php.default`をコピーしてファイル名から`.default`の拡張子を削除。ファイルを以下のように編集  
   （データベース名等は`docker-compose.yml`と一致していれば任意に編集してよい)
 
     ```php
