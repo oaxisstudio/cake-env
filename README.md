@@ -22,7 +22,7 @@ https://hub.docker.com/editions/community/docker-ce-desktop-mac
 1. `Cake-php`ディレクトリで `docker-compose build`
 2. `docker-compose up`
 3. `localhost:8080` にアクセス：CakePHPのトップ画面が表示（まだエラーメッセージが多々出るはず）
-4. `localhost:3030` にアクセス：phpmyadminのトップ画面が表示
+4. `localhost:3000` にアクセス：phpmyadminのトップ画面が表示
 
 ## 必要なファイルの作成・書き換え（CakePHPの初期設定）
 
@@ -64,7 +64,7 @@ https://hub.docker.com/editions/community/docker-ce-desktop-mac
 ```text
 .
 ├── README.md
-├── cakephp（任意の名前）
+├── cakephp（任意の名前に変更可・変更の場合はdocker-compose.ymlも修正する）
 │   ├── app
 │   │   ├── Config
 │   │   ~中略
